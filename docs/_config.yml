@@ -1,0 +1,33 @@
+# Site settings for The Cats team website (GitHub Pages + Jekyll)
+title: The Cats · FLL Team 71447
+description: >-
+  Cat-Bot, our attachments, our code, and our spotted lanternfly trap —
+  a FIRST LEGO League BIOGLOW team from Connecticut on the road to State.
+# If you rename the GitHub organization or repository, update these two lines:
+url: "https://thecats-fll-71447.github.io"
+baseurl: "/bioglow"
+
+theme: minima
+plugins:
+  - jekyll-feed
+  - jekyll-seo-tag
+
+# Pages shown in the top menu, in this order
+header_pages:
+  - robot.md
+  - attachments.md
+  - code.md
+  - innovation.md
+  - sources.md
+  - team.md
+
+github_repo: "https://github.com/thecats-fll-71447/bioglow"
+
+# Files that are for us, not for the website
+exclude:
+  - README.md
+  - BLOG_IDEAS.md
+  - vendor
+
+timezone: America/New_York
+show_excerpts: true

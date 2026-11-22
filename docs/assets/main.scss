@@ -1,0 +1,29 @@
+---
+---
+@import "minima";
+
+// The Cats team colors (from our presentation roles)
+$cat-red: #d7263d;
+$cat-green: #2a9d4b;
+$cat-cyan: #1fb5c9;
+$cat-blue: #2d5bd7;
+
+.site-header { border-top: 5px solid $cat-blue; }
+.site-title, .site-title:visited { font-weight: 700; }
+
+.stat-row { display: flex; flex-wrap: wrap; gap: 12px; margin: 1.2em 0; }
+.stat {
+  flex: 1 1 140px; border: 1px solid #e3e3e3; border-radius: 8px;
+  padding: 10px 14px; background: #fafafa;
+}
+.stat b { display: block; font-size: 1.6em; line-height: 1.2; }
+
+.member { border-left: 6px solid #ccc; padding: 4px 12px; margin: 10px 0; }
+.member.red { border-color: $cat-red; }
+.member.green { border-color: $cat-green; }
+.member.cyan { border-color: $cat-cyan; }
+.member.blue { border-color: $cat-blue; }
+.member.rainbow { border-image: linear-gradient($cat-red, #f4a300, $cat-green, $cat-blue, #8e44ad) 1; }
+
+.todo { background: #fff6d5; border: 1px dashed #e0b400; padding: 6px 10px; border-radius: 6px; }
+img { border-radius: 6px; }
