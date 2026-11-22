@@ -1,0 +1,3 @@
+# Laptop tools for sending code to the hub over Bluetooth.
+# (The robot code itself runs on the hub, not on the laptop.)
+pybricksdev>=2.3.2

@@ -1,0 +1,19 @@
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+*.flat.py
+*.mpy
+
+# Website build output
+docs/_site/
+docs/.jekyll-cache/
+docs/.sass-cache/
+docs/Gemfile.lock
+docs/vendor/
+
+# OS / editor junk
+.DS_Store
+Thumbs.db
+desktop.ini

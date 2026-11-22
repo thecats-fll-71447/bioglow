@@ -1,0 +1,7 @@
+{
+  "python.terminal.activateEnvironment": true,
+  "files.trimTrailingWhitespace": true,
+  "editor.rulers": [79],
+  "git.autofetch": true,
+  "git.confirmSync": false
+}
