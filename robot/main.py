@@ -36,6 +36,7 @@ import run_b_fungus
 import run_c_city
 import run_1_drone
 import run_2_color
+import run_d_forest_elder
 
 
 # --- CONFIGURATION TOGGLE ---
@@ -52,7 +53,7 @@ planned_sequence = ["A", "B", "C", "1", "3", "4", "4", "9"]
 sequence_index = 0
 
 # Base options in strict sequential order (excluding 'Q')
-base_options = ["A", "B", "C", "1", "2"]
+base_options = ["A", "B", "C", "D", "1", "2"]
 
 selected = 0
 last_selected = "1"  # Default startup focus
@@ -62,6 +63,7 @@ mission_map = {
     "A": run_a_keystone.run,
     "B": run_b_fungus.run,
     "C": run_c_city.run,
+    "D": run_d_forest_elder.run,
     "1": run_1_drone.run,
     "2": run_2_color.run,
     "Q": lambda: None,   # quit
