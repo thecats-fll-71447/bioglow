@@ -3,7 +3,7 @@
 # Missions: M02 Exploding Seeds (10 pts per seed, 30 max)
 # Attachment: StarterBotAttachment-Mission2 (Studio file in Drive > Models)
 # Status: solved after the qualifier; tested as its own program.
-# Owner(s): ______   <- put your name here!
+# Owner(s): Brandon   <- put your name here!
 #
 # Copied exactly from Mission2_v1_0.py in the Pybricks backup of Nov 18, 2026.
 # (Its own copy of DriveToWall, with the time limit, now lives in robot.py
@@ -18,13 +18,13 @@
 # Then test the whole match again.
 
 from pybricks.parameters import Stop
-from robot import driveBase, attachment, DriveToWall_Timed
+from robot import driveBase, attachment, DriveToWall
 
 
 def run():
     # attachment can move
     # 250 degrees max from bottom
-    DriveToWall_Timed(300, 35, 5000)
-    attachment.run_angle(500, -245)
+    DriveToWall(300, 50, 2500)
+    attachment.run_angle(500, -250)
     driveBase.straight(-500)
-    attachment.run_angle(500, 245, Stop.COAST)
+    attachment.run_angle(500, 250, Stop.COAST)

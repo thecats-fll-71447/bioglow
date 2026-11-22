@@ -14,14 +14,16 @@ def run():
     driveBase.settings(straight_speed=300)
     if colorSensor.color() == Color.BLUE:
         # Check the Leaves
-        driveBase.reset(0, 0)
-        driveBase.straight(696)
-        attachment.run_angle(400, 730)
-        wait(1000)
-        attachment.run_angle(500, -730)
-        driveBase.use_gyro(False) # turn off gyro for drive back
-        driveBase.straight(-700, then=Stop.COAST)
-        #DriveToWall(-200, 30)
+        # the second black line has to be alined to the right side of the robot
+        driveBase.straight(28 * 25.4)
+        driveBase.turn(-45)
+        driveBase.straight(5 * 25.4)
+        attachment.run_angle(500, -60)
+        wait(1500)
+        attachment.run_angle(500, 60, Stop.COAST)
+        driveBase.straight(-3 * 25.4)
+        driveBase.turn(45)
+        driveBase.straight(-28 * 25.4)
 
     # Grab the Leaves
     # left side set up at second black line

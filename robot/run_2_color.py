@@ -20,12 +20,16 @@ from robot import colorSensor
 import run_3_rock
 import run_4_leaves
 import run_9_vine_roots
+import run_seeds
 
 
 def run():
+    if colorSensor.color() == Color.WHITE:
+        run_seeds.run()
     if colorSensor.color() == Color.RED:
         run_3_rock.run()
     if colorSensor.color() == Color.BLUE or colorSensor.color() == Color.YELLOW:
         run_4_leaves.run()
     if colorSensor.color() == Color.GREEN:
         run_9_vine_roots.run()
+

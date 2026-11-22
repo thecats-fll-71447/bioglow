@@ -25,7 +25,7 @@ from pathlib import Path
 from bleak import BleakScanner
 from pybricksdev.ble.pybricks import PYBRICKS_SERVICE_UUID
 
-SCAN_SECONDS = 5
+SCAN_SECONDS = 2
 PROGRAM = Path(__file__).resolve().parent.parent / "robot" / "main.py"
 
 
