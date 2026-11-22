@@ -25,18 +25,18 @@ Menu selection **2** works for four different attachments. Cat-Bot looks at the
 colored brick on the attachment and picks the code:
 
 ```python
-if color_sensor.color() == Color.RED:
+if colorSensor.color() == Color.RED:
     run_3_rock.run()           # flip the rock
-if color_sensor.color() == Color.BLUE or color_sensor.color() == Color.YELLOW:
+if colorSensor.color() == Color.BLUE or colorSensor.color() == Color.YELLOW:
     run_4_leaves.run()         # check, then grab the leaves
-if color_sensor.color() == Color.GREEN:
+if colorSensor.color() == Color.GREEN:
     run_9_vine_roots.run()     # vine + roots
 ```
 
 Fewer menu selections to remember means fewer mistakes at the table.
 
 ## Helpers we wrote
-- **`Drive_to_Wall`** — drive until the wheels feel the wall push back, then
+- **`DriveToWall`** — drive until the wheels feel the wall push back, then
   stop. Lines the robot up without a person touching it.
 - **`TurnToLoad`** — spin the attachment motor until it hits its stop, then
   turn to an exact angle. Every attachment starts in the same position.

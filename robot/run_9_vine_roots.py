@@ -7,14 +7,14 @@
 
 from pybricks.parameters import Stop
 from pybricks.tools import wait
-from robot import driveBase, attachment, INCHES_TO_MM, Drive_to_Wall, TurnToLoad
+from robot import driveBase, attachment, INCHES_TO_MM, DriveToWall, TurnToLoad
 
 
 def run():
-    driveBase.settings(straight_speed=300) 
+    driveBase.settings(straight_speed=300)
     # Mission 8
     attachment.run_angle(rotation_angle=20,speed=-100,then=Stop.HOLD,wait=False)
-    Drive_to_Wall(-200, 30)
+    DriveToWall(-200, 30)
     driveBase.straight(570)
     driveBase.arc(100, angle=90)
     driveBase.straight(315)
@@ -50,7 +50,7 @@ def run():
         attachment.dc(0)
         # back up
         driveBase.straight(-50)
-    
+
     smack_cycle()
     smack_cycle()
 

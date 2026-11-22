@@ -27,13 +27,13 @@ with it included.
 
 Running out of colors? By default the sensor knows RED, YELLOW, GREEN, BLUE
 and WHITE — **WHITE is still free**. More colors (like MAGENTA, or your own
-measured ones) can be added with `color_sensor.detectable_colors(...)`, but
+measured ones) can be added with `colorSensor.detectable_colors(...)`, but
 then re-test that every attachment still reads correctly. Or use a second
 menu selection with the same colors.
 
-## 5. Drive_to_Wall checks the LEFT motor twice (`robot.py`)
-`abs(LeftMotor.load()) >= StopLoad and abs(LeftMotor.load()) >= StopLoad` —
-the second one was probably meant to be `RightMotor`. `Drive_to_Wall_Timed`
+## 5. DriveToWall checks the LEFT motor twice (`robot.py`)
+`abs(leftMotor.load()) >= StopLoad and abs(leftMotor.load()) >= StopLoad` —
+the second one was probably meant to be `rightMotor`. `DriveToWall_Timed`
 (used by Exploding Seeds) already checks both. Fixing it changes when the
 robot stops, so test run 9 carefully. (Could also be a
 reason run 9 isn't consistent!)

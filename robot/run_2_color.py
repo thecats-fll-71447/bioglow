@@ -11,11 +11,11 @@
 #
 # Colors: by default the sensor knows RED, YELLOW, GREEN, BLUE, WHITE and NONE.
 # WHITE is still free. More colors (like MAGENTA, or your own measured HSV
-# values) can be added with color_sensor.detectable_colors(...) -- see the
+# values) can be added with colorSensor.detectable_colors(...) -- see the
 # Pybricks ColorSensor docs, and re-test every attachment after changing it.
 
 from pybricks.parameters import Color
-from robot import color_sensor
+from robot import colorSensor
 
 import run_3_rock
 import run_4_leaves
@@ -23,9 +23,9 @@ import run_9_vine_roots
 
 
 def run():
-    if color_sensor.color() == Color.RED:
+    if colorSensor.color() == Color.RED:
         run_3_rock.run()
-    if color_sensor.color() == Color.BLUE or color_sensor.color() == Color.YELLOW:
+    if colorSensor.color() == Color.BLUE or colorSensor.color() == Color.YELLOW:
         run_4_leaves.run()
-    if color_sensor.color() == Color.GREEN:
+    if colorSensor.color() == Color.GREEN:
         run_9_vine_roots.run()

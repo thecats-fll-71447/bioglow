@@ -7,7 +7,7 @@
 #   mission9old() - older version of the vine + roots run
 
 from pybricks.tools import wait
-from robot import driveBase, attachment, INCHES_TO_MM, Drive_to_Wall, TurnToLoad
+from robot import driveBase, attachment, INCHES_TO_MM, DriveToWall, TurnToLoad
 
 
 def mission5():
@@ -17,7 +17,7 @@ def mission8():
     # Mission 8
     #print('Konrad')
     driveBase.settings(straight_speed=200)
-    Drive_to_Wall(-200, 30)
+    DriveToWall(-200, 30)
     driveBase.straight(560)
     driveBase.arc(100, angle=90)
     driveBase.straight(340)
@@ -32,7 +32,7 @@ def mission8():
 def mission9old():
     # Mission 8
     TurnToLoad(200,-140,60)
-    Drive_to_Wall(-200, 30)
+    DriveToWall(-200, 30)
     driveBase.straight(560)
     driveBase.arc(100, angle=90)
     driveBase.straight(335)
@@ -47,7 +47,7 @@ def mission9old():
     driveBase.turn(86)
     driveBase.straight(9*INCHES_TO_MM)
     driveBase.straight(-3.5*INCHES_TO_MM)
-    
+
     attachment.dc(-200)
     wait(1000)
     attachment.dc(0)

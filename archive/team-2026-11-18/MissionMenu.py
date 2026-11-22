@@ -10,16 +10,16 @@ INCHES_TO_MM = const(25.4)
 # Mission information
 # Blue (right) area runs first, run launch from starting area
 # with selections A, B, and C
-# Red (left) area next, first run with start area uses selection 1, then 
+# Red (left) area next, first run with start area uses selection 1, then
 # use selection 2 for remaining missions. The attachment as a color to determine
 # which program to use for these missions.
 
 hub = PrimeHub()
-LeftMotor = Motor(Port.E, Direction.COUNTERCLOCKWISE)
-RightMotor = Motor(Port.A, Direction.CLOCKWISE)
-driveBase = DriveBase(LeftMotor, RightMotor, 56, 4.375 * INCHES_TO_MM)
+leftMotor = Motor(Port.E, Direction.COUNTERCLOCKWISE)
+rightMotor = Motor(Port.A, Direction.CLOCKWISE)
+driveBase = DriveBase(leftMotor, rightMotor, 56, 4.375 * INCHES_TO_MM)
 attachment = Motor(Port.B, Direction.CLOCKWISE)
-color_sensor = ColorSensor(Port.C) # Used to determine mission to be run
+colorSensor = ColorSensor(Port.C) # Used to determine mission to be run
 
 # Fetch and store default attachment limits
 default_speed, default_acceleration, default_torque = attachment.control.limits()
@@ -36,9 +36,9 @@ def resetAttachmentSettings():
     attachment.control.limits(default_speed, default_acceleration, default_torque)
 
 # Drive to wall and then stop when wheel load exceeds StopLoad parameter (0-100, need to test load values for specific speeds)
-def Drive_to_Wall(DriveSpeed, StopLoad):
+def DriveToWall(DriveSpeed, StopLoad):
     driveBase.drive(DriveSpeed, 0)
-    while not (abs(LeftMotor.load()) >= StopLoad and abs(LeftMotor.load()) >= StopLoad):
+    while not (abs(leftMotor.load()) >= StopLoad and abs(leftMotor.load()) >= StopLoad):
         wait(0)
     driveBase.brake()
 
@@ -58,11 +58,11 @@ def Mission1():
     driveBase.straight(-700)
 
 def Mission2():
-    if color_sensor.color() == Color.RED:
+    if colorSensor.color() == Color.RED:
         Mission3()
-    if color_sensor.color() == Color.BLUE or color_sensor.color() == Color.YELLOW:
+    if colorSensor.color() == Color.BLUE or colorSensor.color() == Color.YELLOW:
         Mission4()
-    if color_sensor.color() == Color.GREEN:
+    if colorSensor.color() == Color.GREEN:
         Mission9()
 
 def Mission3():
@@ -77,8 +77,8 @@ def Mission3():
     driveBase.straight(-400)
 
 def Mission4():
-    driveBase.settings(straight_speed=300) 
-    if color_sensor.color() == Color.BLUE:
+    driveBase.settings(straight_speed=300)
+    if colorSensor.color() == Color.BLUE:
         # Check the Leaves
         driveBase.reset(0, 0)
         driveBase.straight(696)
@@ -87,11 +87,11 @@ def Mission4():
         attachment.run_angle(500, -730)
         driveBase.use_gyro(False) # turn off gyro for drive back
         driveBase.straight(-700, then=Stop.COAST)
-        #Drive_to_Wall(-200, 30)
-    
+        #DriveToWall(-200, 30)
+
     # Grab the Leaves
     # left side set up at second black line
-    elif color_sensor.color() == Color.YELLOW:
+    elif colorSensor.color() == Color.YELLOW:
         #TurnToLoad(-500, -200, 50)
         driveBase.straight(730)
         driveBase.settings(turn_rate=60)
@@ -102,7 +102,7 @@ def Mission4():
         driveBase.turn(-57)
         driveBase.use_gyro(False) # turn off gyro for drive back
         driveBase.straight(700, then=Stop.COAST)
-        #Drive_to_Wall(200, 30)
+        #DriveToWall(200, 30)
     else:
         pass
 
@@ -119,7 +119,7 @@ def Mission8():
     # Mission 8
     #print('Konrad')
     driveBase.settings(straight_speed=200)
-    Drive_to_Wall(-200, 30)
+    DriveToWall(-200, 30)
     driveBase.straight(560)
     driveBase.arc(100, angle=90)
     driveBase.straight(340)
@@ -133,10 +133,10 @@ def Mission8():
 
 # test code to see if we can do mission 5 after doing mission 8
 def Mission9():
-    driveBase.settings(straight_speed=300) 
+    driveBase.settings(straight_speed=300)
     # Mission 8
     attachment.run_angle(rotation_angle=20,speed=-100,then=Stop.HOLD,wait=False)
-    Drive_to_Wall(-200, 30)
+    DriveToWall(-200, 30)
     driveBase.straight(570)
     driveBase.arc(100, angle=90)
     driveBase.straight(315)
@@ -172,7 +172,7 @@ def Mission9():
         attachment.dc(0)
         # back up
         driveBase.straight(-50)
-    
+
     smack_cycle()
     smack_cycle()
 
@@ -185,12 +185,12 @@ def Mission9():
     wait(100)
     attachment.dc(0)
 
-    
+
 # test code to see if we can do mission 5 after doing mission 8
 def Mission9old():
     # Mission 8
     TurnToLoad(200,-140,60)
-    Drive_to_Wall(-200, 30)
+    DriveToWall(-200, 30)
     driveBase.straight(560)
     driveBase.arc(100, angle=90)
     driveBase.straight(335)
@@ -205,7 +205,7 @@ def Mission9old():
     driveBase.turn(86)
     driveBase.straight(9*INCHES_TO_MM)
     driveBase.straight(-3.5*INCHES_TO_MM)
-    
+
     attachment.dc(-200)
     wait(1000)
     attachment.dc(0)
@@ -234,10 +234,10 @@ def Mission11():
     driveBase.use_gyro(True)
     hub.imu.reset_heading(0)
     driveBase.settings(straight_speed=400)
-    attachment.run_angle(-500, 95 * 4) 
+    attachment.run_angle(-500, 95 * 4)
     driveBase.straight(850, then=Stop.BRAKE)
     attachment.control.limits(acceleration=5000)
-    attachment.run_angle(500, 95 * 4) 
+    attachment.run_angle(500, 95 * 4)
     attachment.control.limits(acceleration=2000)
     driveBase.straight(-55)
     driveBase.turn(87, absolute=True)
@@ -247,7 +247,7 @@ def Mission11():
     driveBase.straight(400)
     driveBase.settings(straight_speed=400)
     driveBase.straight(-100)
-    attachment.run_angle(-500, 360) 
+    attachment.run_angle(-500, 360)
     driveBase.turn(110)
     driveBase.straight(255)
     driveBase.straight(-100)
@@ -306,10 +306,10 @@ def MissionNotDefined():
 # --- CONFIGURATION TOGGLE ---
 # True  = Follows the exact match run order listed in planned_sequence.
 # False = Follows standard order, but rotates like a ring based on what you ran last.
-USE_PLANNED_SEQUENCE = False  
+USE_PLANNED_SEQUENCE = False
 
 # Define your strict chronological match run order here
-planned_sequence = ["A", "B", "C","1","3","4","4","9"] 
+planned_sequence = ["A", "B", "C","1","3","4","4","9"]
 sequence_index = 0
 
 # Base options in strict sequential order (excluding 'Q')
@@ -318,7 +318,7 @@ base_options = ["A", "B", "C", "1", "2"]
 selected = 0
 last_selected = "1"  # Default startup focus
 
-# 2. Build the selection map dynamically 
+# 2. Build the selection map dynamically
 mission_map = {}
 
 # Map "1"-"9" to Mission1-Mission9
@@ -335,7 +335,7 @@ mission_map["Q"] = lambda: None
 
 
 while selected != "Q":
-    hub.light.on(Color.GREEN)    
+    hub.light.on(Color.GREEN)
     driveBase.use_gyro(False)
 
     # Determine the target item that needs to be focused/displayed first
@@ -354,7 +354,7 @@ while selected != "Q":
     else:
         # Find where our target item sits in the alphanumeric sequence
         idx = base_options.index(target_focus)
-        
+
         # Split the list around the target:
         # Part A: From target up to 'F'
         # Part B: From '1' up to target (the wrapped elements)
@@ -372,20 +372,20 @@ while selected != "Q":
         # Save selection context if it is a real mission (ignores 'Q')
         if selected != "Q":
             last_selected = selected
-            
+
         hub.light.on(Color.YELLOW)
-        driveBase.use_gyro(True) 
+        driveBase.use_gyro(True)
         driveBase.settings(straight_speed=200)
         resetDriveSettings()
         resetAttachmentSettings()
-        
+
         # Execute the mission code block
-        mission_map[selected]()  
+        mission_map[selected]()
 
         # Advance sequence index if the expected planned item was run
         if USE_PLANNED_SEQUENCE and selected == target_focus and sequence_index < len(planned_sequence):
             sequence_index += 1
-            
+
     else:
         print("Invalid selection")
 

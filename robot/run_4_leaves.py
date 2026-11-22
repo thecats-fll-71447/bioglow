@@ -7,12 +7,12 @@
 
 from pybricks.parameters import Color, Stop
 from pybricks.tools import wait
-from robot import driveBase, attachment, color_sensor, INCHES_TO_MM, default_turn_rate
+from robot import driveBase, attachment, colorSensor, INCHES_TO_MM, default_turn_rate
 
 
 def run():
-    driveBase.settings(straight_speed=300) 
-    if color_sensor.color() == Color.BLUE:
+    driveBase.settings(straight_speed=300)
+    if colorSensor.color() == Color.BLUE:
         # Check the Leaves
         driveBase.reset(0, 0)
         driveBase.straight(696)
@@ -21,11 +21,11 @@ def run():
         attachment.run_angle(500, -730)
         driveBase.use_gyro(False) # turn off gyro for drive back
         driveBase.straight(-700, then=Stop.COAST)
-        #Drive_to_Wall(-200, 30)
-    
+        #DriveToWall(-200, 30)
+
     # Grab the Leaves
     # left side set up at second black line
-    elif color_sensor.color() == Color.YELLOW:
+    elif colorSensor.color() == Color.YELLOW:
         #TurnToLoad(-500, -200, 50)
         driveBase.straight(730)
         driveBase.settings(turn_rate=60)
@@ -36,6 +36,6 @@ def run():
         driveBase.turn(-57)
         driveBase.use_gyro(False) # turn off gyro for drive back
         driveBase.straight(700, then=Stop.COAST)
-        #Drive_to_Wall(200, 30)
+        #DriveToWall(200, 30)
     else:
         pass
