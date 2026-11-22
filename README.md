@@ -14,6 +14,7 @@ Elm City Robo Fest on November 14, 2026.
 |---|---|
 | `robot/` | **The competition program.** Run `robot/main.py` on the hub. |
 | `tests/` | `check.py` tests the code on a laptop — no robot needed. |
+| `tools/` | `load_robot.py` sends the program to a hub, after you pick which hub. |
 | `archive/` | The single-file program that ran at the qualifier, plus older versions. Our safety net. |
 | `experiments/` | Everyone's test programs from Pybricks backups (October–November). |
 | `docs/` | Our team website and blog (published with GitHub Pages). |

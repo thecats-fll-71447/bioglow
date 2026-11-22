@@ -12,30 +12,26 @@
       "label": "Check code (no robot)",
       "detail": "Looks for typos and compares to the qualifier code",
       "type": "shell",
-      "command": "${command:python.interpreterPath} tests/check.py",
+      "command": "./.venv/bin/python tests/check.py",
+      "windows": { "command": ".\\.venv\\Scripts\\python.exe tests/check.py" },
       "problemMatcher": [],
       "group": { "kind": "test", "isDefault": true }
     },
     {
       "label": "Load program onto robot",
-      "detail": "Sends robot/main.py (and every run file) to the hub over Bluetooth",
+      "detail": "Lists the hubs nearby, asks which one is yours, then sends the program to that hub only",
       "type": "shell",
-      "command": "${command:python.interpreterPath} -m pybricksdev run ble --no-start robot/main.py",
+      "command": "./.venv/bin/python tools/load_robot.py",
+      "windows": { "command": ".\\.venv\\Scripts\\python.exe tools/load_robot.py" },
       "problemMatcher": [],
       "group": { "kind": "build", "isDefault": true }
     },
     {
-      "label": "Load program onto a specific robot",
-      "detail": "Same as above, for a hub with a specific name",
-      "type": "shell",
-      "command": "${command:python.interpreterPath} -m pybricksdev run ble --no-start --name \"${input:hubName}\" robot/main.py",
-      "problemMatcher": []
-    },
-    {
       "label": "Load and run now (watch output)",
-      "detail": "Sends the program, starts it, and shows print() output here",
+      "detail": "Same hub check, then starts the program and shows print() output here",
       "type": "shell",
-      "command": "${command:python.interpreterPath} -m pybricksdev run ble robot/main.py",
+      "command": "./.venv/bin/python tools/load_robot.py --run",
+      "windows": { "command": ".\\.venv\\Scripts\\python.exe tools/load_robot.py --run" },
       "problemMatcher": []
     }
   ],
@@ -45,11 +41,6 @@
       "type": "pickString",
       "description": "Who are you?",
       "options": ["Asher", "Brandon", "Aedan", "Konrad", "Thomas", "Coach"]
-    },
-    {
-      "id": "hubName",
-      "type": "promptString",
-      "description": "Hub name (as shown in Pybricks)"
     }
   ]
 }

@@ -184,8 +184,11 @@ You should see `OK` for every file and `SAME` for every match scenario.
 1. Turn on the hub (it already has Pybricks firmware). Make sure the
    computer's **Bluetooth is on**.
 2. In VS Code: `Ctrl+Shift+P` → **Tasks: Run Task** → **Load program onto robot**.
-   (Or in the terminal: `python -m pybricksdev run ble --no-start robot/main.py`)
-3. The program stays on the hub. Walk to the table and start it with the
+   (Or in the terminal: `python tools/load_robot.py`)
+3. It lists every Pybricks hub that's turned on nearby, closest first, and
+   waits. **Type the number of your hub** and press Enter. Nothing is sent
+   until you do, and just pressing Enter cancels.
+4. The program stays on the hub. Walk to the table and start it with the
    center button — just like at the qualifier.
 
 **First time on a Mac:** macOS asks *"Visual Studio Code would like to use
@@ -204,11 +207,11 @@ python -m pybricksdev udev | sudo tee /etc/udev/rules.d/99-pybricksdev.rules
 sudo udevadm control --reload-rules && sudo udevadm trigger
 ```
 
-**Lots of hubs in the room?** Use **Tasks: Run Task → Load program onto a
-specific robot** and type the hub's name. (A hub's name is chosen when
-Pybricks firmware is installed on it. If all the practice hubs have the same
-default name, it's worth giving each one its own name next time you update
-firmware, so you always know which one you're talking to.)
+**Lots of hubs in the room?** That's why the loader asks first. Give each
+of the team's hubs its own name (for example `CatBot`) so it's easy to pick
+from the list. A hub's name is chosen when Pybricks firmware is installed
+on it, in Pybricks Code. If two hubs share a name, the list says so; pick by
+signal strength (closest is strongest) or turn the other one off.
 
 ### Signing in to GitHub (coaches only)
 
@@ -252,6 +255,7 @@ repository too:
 | `pybricksdev` can't find the hub | Bluetooth on? Hub on and **not** connected to another laptop or the Pybricks website? Close the Pybricks Code tab. |
 | `ImportError: no module named 'run_...'` on the hub | You loaded only one file. Load `main.py` with pybricksdev (it sends every file it imports), or import **all** robot files into Pybricks Code. |
 | `git push` asks for a password | A coach signs in through the browser window. Never type a coach password where kids can see it. |
+| A task says `.venv` ... not found / not recognized | The tasks use the project's own `.venv`, whichever Python version made it. Do Step 4 in the `bioglow` folder to create it. |
 | `check.py` says `CHANGED` | That's fine if you meant to change that run. It's telling you which command is different from the competition code. |
 | `check.py` says `ERROR` | Typo or missing import in the file it names — read the message. |
 | Mac: hub never shows up | macOS blocked Bluetooth for VS Code or Terminal: **System Settings → Privacy & Security → Bluetooth**, turn it on, then quit and reopen VS Code. |
