@@ -38,19 +38,7 @@ import run_1_drone
 import run_2_color
 import run_d_forest_elder
 
-
-# --- CONFIGURATION TOGGLE ---
-# True  = Follows the exact match run order listed in planned_sequence.
-# False = Follows standard order, but rotates like a ring based on what you ran last.
-USE_PLANNED_SEQUENCE = False
-
-# Define your strict chronological match run order here
-# The team stopped using the planned sequence before the qualifier.
-# TODO (starter issue): this list still uses the OLD selections 3, 4, 9, which are
-# no longer in base_options, so switching USE_PLANNED_SEQUENCE to True would
-# crash the menu. Simplest fix: delete the planned-sequence feature.
-planned_sequence = ["A", "B", "C", "1", "3", "4", "4", "9"]
-sequence_index = 0
+sequence_index=0
 
 # Base options in strict sequential order (excluding 'Q')
 base_options = ["A", "B", "C", "D", "1", "2"]
@@ -75,13 +63,7 @@ while selected != "Q":
     driveBase.use_gyro(False)
 
     # Determine the target item that needs to be focused/displayed first
-    if USE_PLANNED_SEQUENCE:
-        if sequence_index < len(planned_sequence):
-            target_focus = planned_sequence[sequence_index]
-        else:
-            target_focus = "Q"
-    else:
-        target_focus = last_selected
+    target_focus = last_selected
 
     # --- FIXED TERMINATOR RING ROTATION LOGIC ---
     if target_focus == "Q":
@@ -100,26 +82,18 @@ while selected != "Q":
     # Pass the ordered list into the hub menu
     selected = hub_menu(*dynamic_options)
 
-    if selected == "R":
-        sequence_index = 0
-
-    elif selected in mission_map:
+    if selected in mission_map:
         # Save selection context if it is a real mission (ignores 'Q')
         if selected != "Q":
             last_selected = selected
 
         hub.light.on(Color.YELLOW)
         driveBase.use_gyro(True)
-        driveBase.settings(straight_speed=200)
         resetDriveSettings()
         resetAttachmentSettings()
 
         # Execute the mission code block
         mission_map[selected]()
-
-        # Advance sequence index if the expected planned item was run
-        if USE_PLANNED_SEQUENCE and selected == target_focus and sequence_index < len(planned_sequence):
-            sequence_index += 1
 
     else:
         print("Invalid selection")
